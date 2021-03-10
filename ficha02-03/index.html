@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+      .realizada {
+        text-decoration: line-through;
+        color: grey;
+      }
+
+      .prioritario {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>Lista de Tarefas</h2>
+      <input type="text" placeholder="Insira uma nova tarefa" v-model="novaTarefa" @keyup.enter="tarefas.push(novaTarefa)">
+      <button @click="insereTarefa()">Inserir</button>
+      <ul>
+        <li 
+          v-for="item in tarefas" 
+          :class="{realizada: item.realizada, prioritario: item.prioritario}"
+          @click="realizaTarefa(item)">
+          {{ item.nome }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      var aplicacao = new Vue({
+        el: '#app',
+        data: {
+          novaTarefa: '',
+          tarefas: [
+            {
+              nome: 'Exercícios de HTML e CSS',
+              prioritario: false,
+              realizada: false
+            },
+            {
+              nome: 'Exercícios de Javascript',
+              prioritario: false,
+              realizada: false
+            },
+            {
+              nome: 'Exercícios de VueJS',
+              prioritario: true,
+              realizada: false
+            },
+            {
+              nome: 'Exercícios de Angular',
+              prioritario: false,
+              realizada: false
+            }
+          ]
+        },
+        methods: {
+          realizaTarefa(item) {
+            item.realizada = !item.realizada;
+          },
+          insereTarefa() {
+            if(!!this.novaTarefa) {
+              this.tarefas.push({
+                nome: this.novaTarefa,
+                prioridade: false,
+                realizada: false
+              })
+              this.novaTarefa = '';
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
