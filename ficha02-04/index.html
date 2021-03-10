@@ -21,12 +21,23 @@
     <div id="app">
       <h2>Lista de Tarefas</h2>
       <input type="text" placeholder="Insira uma nova tarefa" v-model="novaTarefa" @keyup.enter="insereTarefa">
-      <ul>
+      <button @click="toggleEdit">Editar</button>
+      <ul v-if="!edit">
         <li 
           v-for="item in tarefas" 
           :class="{realizada: item.realizada, prioritario: item.prioritario}"
           @click="realizaTarefa(item)">
           {{ item.nome }}
+        </li>
+      </ul>
+      <ul v-if="edit">
+        <li 
+          v-for="item in tarefas" 
+          :class="{realizada: item.realizada, prioritario
+        : item.prioritario}">
+            <input type="text" v-model="item.nome">
+            <input type="checkbox" v-model="item.prioritario">
+            <input type="checkbox" v-model="item.realizada">
         </li>
       </ul>
     </div>
@@ -35,6 +46,7 @@
         el: '#app',
         data: {
           novaTarefa: '',
+          edit: false,
           tarefas: [
             {
               nome: 'Exercícios de HTML e CSS',
@@ -61,6 +73,10 @@
         methods: {
           realizaTarefa(item) {
             item.realizada = !item.realizada;
+          },
+          toggleEdit() {
+            this.edit = !this.edit;
+            console.log(this.edit);
           },
           insereTarefa() {
             if(!!this.novaTarefa) {
