@@ -14,7 +14,7 @@
     <div id="app">
       <h2>Lista de Tarefas</h2>
       <input type="text" placeholder="Insira uma nova tarefa" v-model="novaTarefa" @keyup.enter="tarefas.push(novaTarefa)">
-      <button @click="insereTarefa()">Inserir</button>
+      <button @click="insereTarefa">Inserir</button>
       <ul>
         <li v-for="item in tarefas">{{ item }}</li>
       </ul>

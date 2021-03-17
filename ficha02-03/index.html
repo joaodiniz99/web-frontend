@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <style>
@@ -20,60 +20,66 @@
   <body>
     <div id="app">
       <h2>Lista de Tarefas</h2>
-      <input type="text" placeholder="Insira uma nova tarefa" v-model="novaTarefa" @keyup.enter="insereTarefa">
+      <input
+        type="text"
+        placeholder="Insira uma nova tarefa"
+        v-model="novaTarefa"
+        @keyup.enter="insereTarefa"
+      />
       <ul>
-        <li 
-          v-for="item in tarefas" 
+        <li
+          v-for="item in tarefas"
           :class="{realizada: item.realizada, prioritario: item.prioritario}"
-          @click="realizaTarefa(item)">
+          @click="realizaTarefa(item)"
+        >
           {{ item.nome }}
         </li>
       </ul>
     </div>
     <script>
       var aplicacao = new Vue({
-        el: '#app',
+        el: "#app",
         data: {
-          novaTarefa: '',
+          novaTarefa: "",
           tarefas: [
             {
-              nome: 'Exercícios de HTML e CSS',
+              nome: "Exercícios de HTML e CSS",
               prioritario: false,
-              realizada: false
+              realizada: false,
             },
             {
-              nome: 'Exercícios de Javascript',
+              nome: "Exercícios de Javascript",
               prioritario: false,
-              realizada: false
+              realizada: false,
             },
             {
-              nome: 'Exercícios de VueJS',
+              nome: "Exercícios de VueJS",
               prioritario: true,
-              realizada: false
+              realizada: false,
             },
             {
-              nome: 'Exercícios de Angular',
+              nome: "Exercícios de Angular",
               prioritario: false,
-              realizada: false
-            }
-          ]
+              realizada: false,
+            },
+          ],
         },
         methods: {
           realizaTarefa(item) {
             item.realizada = !item.realizada;
           },
           insereTarefa() {
-            if(!!this.novaTarefa) {
+            if (!!this.novaTarefa) {
               this.tarefas.push({
                 nome: this.novaTarefa,
                 prioridade: false,
-                realizada: false
-              })
-              this.novaTarefa = '';
+                realizada: false,
+              });
+              this.novaTarefa = "";
             }
-          }
-        }
-      })
+          },
+        },
+      });
     </script>
   </body>
 </html>
