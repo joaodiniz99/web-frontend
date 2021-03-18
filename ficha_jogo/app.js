@@ -27,7 +27,7 @@ var aplicacao = new Vue({
         setTimeout(() => {
           alert("Empate 😮");
           this.startGame();
-        }, 1000);
+        }, 500);
         return;
       }
 
@@ -38,7 +38,7 @@ var aplicacao = new Vue({
         setTimeout(() => {
           alert("Ganhaste! 🥳");
           this.startGame();
-        }, 1000);
+        }, 500);
         return;
       }
 
@@ -49,7 +49,7 @@ var aplicacao = new Vue({
         setTimeout(() => {
           alert("Perdeste... 😢");
           this.startGame();
-        }, 1000);
+        }, 500);
         return;
       }
     },
