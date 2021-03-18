@@ -22,6 +22,7 @@ var aplicacao = new Vue({
       // Empate
       if (this.monsterHealth <= 0 && this.playerHealth <= 0) {
         this.notAllowed = true;
+        this.playerHealth = 0;
         this.monsterHealth = 0;
         setTimeout(() => {
           alert("Empate 😮");
