@@ -1,3 +1,7 @@
+* {
+    scroll-behavior: smooth;
+}
+
 .text-center {
     text-align: center;
 }
@@ -25,6 +29,11 @@
     font-size: 22px;
 }
 
+.log {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 .log ul {
     list-style: none;
     font-weight: bold;
@@ -40,6 +49,11 @@
     background-color: #e4e8ff;
 }
 
+.log ul .player-heal {
+    color: rgb(0, 255, 0);
+    background-color: rgb(210, 255, 210);
+}
+
 .log ul .monster-turn {
     color: red;
     background-color: #ffc0c1;
@@ -51,6 +65,10 @@ button {
     padding: 12px;
     box-shadow: 0 1px 1px black;
     margin: 10px;
+}
+
+.not_allowed {
+    cursor: not-allowed;
 }
 
 #start-game {
