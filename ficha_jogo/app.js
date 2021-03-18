@@ -107,6 +107,6 @@ var aplicacao = new Vue({
     },
     giveUp() {
       this.gameIsRunning = false;
-    },
-  },
+    }
+  }
 });
