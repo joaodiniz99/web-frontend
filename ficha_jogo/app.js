@@ -5,7 +5,8 @@ var aplicacao = new Vue({
     monsterHealth: 100,
     gameIsRunning: false,
     turns: [],
-    notAllowed: false
+    turn_id: 0,
+    notAllowed: false,
   },
   methods: {
     startGame() {
@@ -14,6 +15,7 @@ var aplicacao = new Vue({
       this.playerHealth = 100;
       this.monsterHealth = 100;
       this.turns = [];
+      this.turn_id = 0;
     },
     calculateDamage(max, min) {
       return Math.max(Math.floor(Math.random() * max + 1, min));
@@ -55,6 +57,7 @@ var aplicacao = new Vue({
     },
     insertTurn(state, msg, dmg) {
       this.turns.unshift({
+        id: ++this.turn_id,
         isPlayer: state,
         text: msg + dmg,
       });
@@ -69,7 +72,7 @@ var aplicacao = new Vue({
       var monsterDamage = this.calculateDamage(12, 5);
       this.playerHealth -= monsterDamage;
       this.insertTurn(false, "Monster hits Player for ", monsterDamage);
-      
+
       // Verificar quem ganhou
       this.checkWin();
     },
@@ -89,12 +92,11 @@ var aplicacao = new Vue({
     },
     heal() {
       // Ganhar vida
-      if (this.playerHealth < 100) {
-        this.playerHealth += this.calculateDamage(25, 5);
-        if (this.playerHealth > 100) {
-          this.playerHealth = 100;
-        }
+      this.playerHealth += this.calculateDamage(25, 5);
+      if (this.playerHealth > 100) {
+        this.playerHealth = 100;
       }
+      
       // Perder vida
       setTimeout(() => {
         var monsterDamage = this.calculateDamage(10, 3);

@@ -51,15 +51,27 @@
       <section class="row log">
         <div class="small-12 columns">
           <ul>
-            <li 
+            <transition-group name="fade" appear>
+              <li 
               v-for="turn in turns"
-              :class="[ turn.isPlayer ? 'player-turn' : 'monster-turn' ]">
-              {{ turn.text }}
-            </li>
+              :class="[ turn.isPlayer ? 'player-turn' : 'monster-turn' ]"
+              :key="turn.id">
+                {{ turn.text }}
+              </li>
+            </transition-group>
           </ul>
         </div>
       </section>
     </div>
+    <style>
+      .fade-enter-active {
+        transition: opacity 0.5s;
+      }
+
+      .fade-enter {
+        opacity: 0;
+      }
+    </style>
     <script src="./app.js"></script>
   </body>
 </html>
