@@ -2,16 +2,21 @@
 <html>
   <head>
     <title>Monster Slayer</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="foundation.min.css" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   </head>
 
   <body>
     <div id="app">
       <section class="row">
-        <div class="small-6 columns">
-          <h1 class="text-center">YOU</h1>
+        <div class="small-6 columns text-center">
+          <transition enter-active-class="animate__animated animate__shakeX" leave-active-class="animate__animated animate__shakeX">
+            <img src="./assets/img/wolf.jpg" alt="Wolf logo" v-if="animationToggle">
+          </transition>
+           <h1 class="text-center">YOU</h1>
           <div class="healthbar">
             <div
               class="healthbar text-center"
@@ -22,7 +27,10 @@
             </div>
           </div>
         </div>
-        <div class="small-6 columns">
+        <div class="small-6 columns text-center">
+          <transition enter-active-class="animate__animated animate__shakeX" leave-active-class="animate__animated animate__shakeX">
+            <img src="./assets/img/chogath.jpg" alt="Monster logo" v-if="animationToggle">
+          </transition>
           <h1 class="text-center">MONSTER</h1>
           <div class="healthbar">
             <div
@@ -42,9 +50,9 @@
       </section>
       <section class="row controls" v-else>
         <div class="small-12 columns">
-          <button id="attack" @click="attack" :disabled="notAllowed" :class="{ not_allowed: notAllowed }">ATTACK</button>
-          <button id="special-attack" @click="specialAttack" :disabled="notAllowed" :class="{ not_allowed: notAllowed }">SPECIAL ATTACK</button>
-          <button id="heal" @click="heal">HEAL</button>
+          <button id="attack" @click="attack(); toggleAnimation()" :disabled="notAllowed" :class="{ not_allowed: notAllowed }">ATTACK</button>
+          <button id="special-attack" @click="specialAttack(); toggleAnimation()" :disabled="notAllowed" :class="{ not_allowed: notAllowed }">SPECIAL ATTACK</button>
+          <button id="heal" @click="heal(); toggleAnimation()">HEAL</button>
           <button id="give-up" @click="giveUp">GIVE UP</button>
         </div>
       </section>
@@ -72,6 +80,6 @@
         opacity: 0;
       }
     </style>
-    <script src="./app.js"></script>
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
