@@ -7,7 +7,9 @@ var aplicacao = new Vue({
     turns: [],
     turn_id: 0,
     notAllowed: false,
-    animationToggle: true
+    animationToggle: true,
+    bkgColorP: "green",
+    bkgColorM: "green",
   },
   methods: {
     startGame() {
@@ -121,6 +123,24 @@ var aplicacao = new Vue({
       setTimeout(() => {
         this.animationToggle = true;
       }, 0);
+    },
+    playerHealth() {
+      if (this.playerHealth < 25) {
+        this.bkgColorP = "red";
+      } else if (this.playerHealth < 50) {
+        this.bkgColorP = "orange";
+      } else {
+        this.bkgColorP = "green";
+      }
+    },
+    monsterHealth() {
+      if (this.monsterHealth < 25) {
+        this.bkgColorM = "red";
+      } else if (this.monsterHealth < 50) {
+        this.bkgColorM = "orange";
+      } else {
+        this.bkgColorM = "green";
+      }
     }
   }
 });
